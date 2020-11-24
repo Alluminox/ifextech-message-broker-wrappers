@@ -5,7 +5,7 @@
 
 import { Brokers } from '@ifextech/message-broker-wrappers';
 
-const nats = new Brokers.Nats()
+const nats = new Brokers.NatsMessageBrokerImpl()
 nats.connect({ host: /* Your  host here */ })
 .then(() => {
   nats.publish('to', { payload: {} }, () => /* Your logic here */)
@@ -19,7 +19,7 @@ nats.connect({ host: /* Your  host here */ })
 
 import { Brokers } from '@ifextech/message-broker-wrappers';
 
-const nats = new Brokers.Nats()
+const nats = new Brokers.NatsMessageBrokerImpl()
 nats.connect({ host: /* Your  host here */ })
 .then(() => {
   nats.subscribe('to', () => /* Your logic here */)
