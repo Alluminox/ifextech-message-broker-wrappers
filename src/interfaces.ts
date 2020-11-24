@@ -52,7 +52,7 @@ export interface INatsMessageBroker<T> extends IMessageBroker {
   @method publish
   @description publish into nats
   */
-  publish(to: string, message: T, callback?: HandleMessageBrokerFunc<T>);
+  publish(to: string, message: T, callback?: HandleMessageBrokerFunc<T>): void;
 
   /*
   @method subscribe

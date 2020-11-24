@@ -15,13 +15,13 @@ to includes logic for abstract methods to reutilize into Rest API'S
 or another services if need exchange of messages between services
 @author JimmyCodder
 */
-export class NatsMessageBrokerImpl implements INatsMessageBroker<INatsMessage | nats.NatsError> {
+export class NatsMessageBrokerImpl implements INatsMessageBroker<INatsMessage | nats.NatsError | string> {
 
   /*
   @attribute _natsClient
   @type nats.Client
   */
-  private _natsClient: nats.Client
+  private _natsClient: nats.Client | null = null;
 
   /*
   @method connect
@@ -65,9 +65,9 @@ export class NatsMessageBrokerImpl implements INatsMessageBroker<INatsMessage | 
   @returns void
   @description subscribe message
   */
-  subscribe(from: string, callback?: HandleMessageBrokerFunc<INatsMessage | nats.NatsError>): SID {
-    return this.natsClient.subscribe(from, (msg, reply, subject, sid) => {
-      callback(this.convertMessage(msg), reply, subject, sid)
+  subscribe(from: string, callback: HandleMessageBrokerFunc<INatsMessage | nats.NatsError | string>): SID {
+    return this.natsClient.subscribe(from, (msg: any, reply: string, subject: string, sid: number) => {
+      callback(this.parseMessage(msg), reply, subject, sid)
     })
   }
   
@@ -85,9 +85,9 @@ export class NatsMessageBrokerImpl implements INatsMessageBroker<INatsMessage | 
   @returns void
   @description request a message to enable RPC messages
   */
-  request(from: string, message: INatsMessage, requestConfig: INastsRequestConfig, callback?: HandleMessageBrokerFunc<INatsMessage | nats.NatsError>): SID {
+  request(from: string, message: INatsMessage, requestConfig: INastsRequestConfig, callback: HandleMessageBrokerFunc<INatsMessage | nats.NatsError | string>): SID {
 
-    return this.natsClient.request(from, this.parseMessage(message), (msg, reply, subject, sid) => {
+    return this.natsClient.request(from, this.parseMessage(message), requestConfig, (msg: any, reply: string, subject: string, sid: number) => {
       callback(this.convertMessage(msg), reply, subject, sid)
     })
   }

@@ -1,16 +1,12 @@
 {
   "compilerOptions": {
-    "strict": false,
-    "target": "ESNext",
+    "target": "es5",
     "module": "commonjs",
-    "allowJs": true,
+    "outDir": "./dist",
     "declaration": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "sourceMap": true,
+    "strict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "outDir": "./dist",
     "typeRoots": [
       "../node_modules/@types"
     ],
@@ -18,8 +14,8 @@
       "node"
     ]
   },
+  "include": [ "src/**/*.ts" ],
+  "exclude": [ "node_modules"],
   "compileOnSave": true,
-  "buildOnSave": true,
-  "include": [ "./src/**/*.ts" ],
-  "exclude": [ "node_modules"]
+  "buildOnSave": true
 }

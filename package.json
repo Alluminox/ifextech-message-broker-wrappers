@@ -1,14 +1,14 @@
 {
   "name": "@ifextech/message-broker-wrappers",
   "version": "1.0.1",
-  "license": "MIT",
-  "private": false,
   "main": "src/index.ts",
   "types": "./dist/index.d.ts",
+  "private": false,
   "files": [
     "dist/**/*"
   ],
   "description": "A reusable package for the simple use of message brokers",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/Alluminox/ifextech-message-broker-wrappers.git"
