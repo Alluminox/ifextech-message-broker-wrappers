@@ -1,7 +1,7 @@
 {
   "name": "@ifextech/message-broker-wrappers",
   "version": "1.0.2",
-  "main": "src/index.ts",
+  "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "private": false,
   "files": [
