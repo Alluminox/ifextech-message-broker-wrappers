@@ -1,5 +1,3 @@
-import { NatsMessageBrokerImpl } from './implementations/nats-message-broker';
-
-export * from './interfaces';
 export * from './types';
-export const Brokers = { Nats: NatsMessageBrokerImpl }
+export * from './interfaces';
+export * as Brokers from './implementations';
